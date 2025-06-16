@@ -1,0 +1,23 @@
+ Initialize length_counter to 0
+Initialize word_counter to 1   // Assume at least one word before first space
+Initialize vowel_counter to 0
+
+Read character c
+
+WHILE c is not '.'
+    Increment length_counter by 1
+
+    IF c is a vowel (a, e, i, o, u, A, E, I, O, U)
+        Increment vowel_counter by 1
+    END IF
+
+    IF c is a space ' '
+        Increment word_counter by 1
+    END IF
+
+    Read next character c
+END WHILE
+
+Increment length_counter by 1  // to count the final period
+
+Output length_counter, word_counter, vowel_counter
