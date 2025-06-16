@@ -1,0 +1,81 @@
+Algorithm SumDistinctElements(Set1: array of int, Set2: array of int) -> int
+    sum <- 0
+
+    // Helper function to check if element exists in array
+    Function Exists(arr: array of int, val: int) -> bool
+        For i from 0 to length(arr)-1 Do
+            If arr[i] = val Then
+                Return TRUE
+            EndIf
+        EndFor
+        Return FALSE
+    EndFunction
+
+    // Add elements from Set1 that are NOT in Set2
+    For i from 0 to length(Set1)-1 Do
+        If NOT Exists(Set2, Set1[i]) Then
+            sum <- sum + Set1[i]
+        EndIf
+    EndFor
+
+    // Add elements from Set2 that are NOT in Set1
+    For j from 0 to length(Set2)-1 Do
+        If NOT Exists(Set1, Set2[j]) Then
+            sum <- sum + Set2[j]
+        EndIf
+    EndFor
+
+    Return sum
+EndAlgorithm
+
+Problem 2: Dot Product and Orthogonality Check
+Step 1: Procedure to compute dot product
+pseudo
+Copier
+Modifier
+Procedure dot_product(v1: array of real, v2: array of real, n: int, VAR ps: real)
+    ps <- 0
+    For i from 0 to n-1 Do
+        ps <- ps + (v1[i] * v2[i])
+    EndFor
+EndProcedure
+Step 2: Algorithm to check orthogonality for n pairs
+pseudo
+Copier
+Modifier
+Algorithm CheckOrthogonality(pairs: array of pairs of vectors, n: int)
+    Declare ps: real
+
+    For k from 0 to n-1 Do
+        dot_product(pairs[k].v1, pairs[k].v2, length(pairs[k].v1), ps)
+        
+        If ps = 0 Then
+            Write("Pair ", k, " are orthogonal.")
+        Else
+            Write("Pair ", k, " are NOT orthogonal.")
+        EndIf
+    EndFor
+EndAlgorithm
+Step 3: Modified version with dot_product as a function returning the value
+pseudo
+Copier
+Modifier
+Function dot_product(v1: array of real, v2: array of real, n: int) -> real
+    sum <- 0
+    For i from 0 to n-1 Do
+        sum <- sum + (v1[i] * v2[i])
+    EndFor
+    Return sum
+EndFunction
+
+Algorithm CheckOrthogonalityFunction(pairs: array of pairs of vectors, n: int)
+    For k from 0 to n-1 Do
+        ps <- dot_product(pairs[k].v1, pairs[k].v2, length(pairs[k].v1))
+        
+        If ps = 0 Then
+            Write("Pair ", k, " are orthogonal.")
+        Else
+            Write("Pair ", k, " are NOT orthogonal.")
+        EndIf
+    EndFor
+EndAlgorithm
